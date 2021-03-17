@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["src/*"],
+            "@/*": ["src/*"]
+        },
+        "target": "ES6",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules"],
+    "files": [
+        "node_modules/source-map/source-map.js"
+    ]
+}
