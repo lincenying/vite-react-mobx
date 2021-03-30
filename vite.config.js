@@ -1,6 +1,7 @@
 const path = require('path')
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { getBabelOutputPlugin } from '@rollup/plugin-babel'
+import WindiCSS from 'vite-plugin-windicss'
 import styleImport from 'vite-plugin-style-import'
 
 // https://vitejs.dev/config/
@@ -60,6 +61,9 @@ export default () => {
                         }
                     }
                 ]
+            }),
+            WindiCSS({
+                safelist: 'prose prose-sm m-auto text-left'
             })
         ],
         resolve: {

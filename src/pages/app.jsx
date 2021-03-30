@@ -9,6 +9,7 @@ import Nav from '../components/nav.jsx'
 import Article from './article/index.jsx'
 import Main from './topics/index.jsx'
 
+import 'virtual:windi.css'
 import 'toastr/build/toastr.min.css'
 import '../assets/scss/style.scss'
 import 'nprogress/nprogress.css'
@@ -16,7 +17,7 @@ import 'nprogress/nprogress.css'
 const App = props => {
     return (
         // <ScrollToTop>
-        <div className="main">
+        <div className="main flex flex-col">
             <Nav location={props.location} />
             <TransitionGroup appear>
                 <CSSTransition classNames="example" in={false} key={props.location.key} timeout={{ appear: 300, enter: 300, exit: 300 }}>
