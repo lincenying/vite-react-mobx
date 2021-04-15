@@ -15,18 +15,7 @@ export default () => {
             }
         },
         plugins: [
-            getBabelOutputPlugin({
-                presets: [
-                    [
-                        '@babel/preset-env',
-                        {
-                            useBuiltIns: 'usage',
-                            corejs: '3'
-                        }
-                    ]
-                ],
-                plugins: ['@babel/plugin-proposal-class-properties']
-            }),
+            getBabelOutputPlugin(),
             reactRefresh(),
             styleImport({
                 libs: [
