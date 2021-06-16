@@ -1,11 +1,15 @@
 const path = require('path')
+
+import { loadEnv } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { getBabelOutputPlugin } from '@rollup/plugin-babel'
 import WindiCSS from 'vite-plugin-windicss'
 import styleImport from 'vite-plugin-style-import'
 
 // https://vitejs.dev/config/
-export default () => {
+export default ({ mode }) => {
+    process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
+
     const config = {
         css: {
             preprocessorOptions: {

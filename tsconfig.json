@@ -1,18 +1,23 @@
 {
     "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "jsx": "preserve",
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
         "baseUrl": ".",
         "paths": {
-            "~/*": ["src/*"],
-            "@/*": ["src/*"]
+            "@/*": ["src/*"],
+            "~/*": ["src/*"]
         },
-        "target": "ES6",
-        "module": "commonjs",
-        "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
     },
-    "include": ["./src/**/*"],
+    "include": ["src/**/*.js", "src/**/*.jsx"],
     "exclude": ["node_modules"],
-    "files": [
-        "node_modules/source-map/source-map.js"
-    ]
+    "files": ["main.ts"]
 }
