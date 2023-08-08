@@ -1,8 +1,7 @@
 {
-    "extends": ["lcy-react", "prettier"],
-    "plugins": ["prettier"],
-    "rules": {
-        "prettier/prettier": "error",
-        "no-irregular-whitespace": 0
-    }
+  "extends": ["@lincy/eslint-config-react"],
+  "plugins": [],
+  "rules": {
+    "no-irregular-whitespace": 0
+  }
 }

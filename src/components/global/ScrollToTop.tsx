@@ -1,8 +1,15 @@
+import type { ReactNode } from 'react'
 import { useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useUpdateEffect } from 'ahooks'
 
-export default function ScrollToTop(props) {
-    const pathname = props.location.pathname
+interface Props {
+    children?: ReactNode
+}
+
+export default function ScrollToTop(props: Props) {
+    const location = useLocation()
+    const pathname = location.pathname
     const firstPathname = useRef(pathname)
 
     useUpdateEffect(() => {

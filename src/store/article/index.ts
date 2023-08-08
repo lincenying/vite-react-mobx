@@ -1,5 +1,6 @@
-import { observable, action, makeAutoObservable, runInAction } from 'mobx'
+import { action, makeAutoObservable, observable, runInAction } from 'mobx'
 import api from '@/api'
+import type { ApiConfig, Article } from '@/types'
 
 export class ArticleStore {
     constructor() {
@@ -7,22 +8,22 @@ export class ArticleStore {
             isLoad: observable,
             pathname: observable,
             data: observable,
-            getTopics: action
+            getArticle: action,
         })
     }
 
     isLoad = false
     pathname = ''
-    data = {}
+    data: Article = {} as Article
 
-    getArticle = async config => {
+    getArticle = async (config: ApiConfig) => {
         this.isLoad = false
-        const { data, success } = await api.get('/api/v1/topic/' + config.id)
-        if (success === true) {
+        const { code, data } = await api.get<Article>('api/frontend/article/item', config)
+        if (code === 200) {
             runInAction(() => {
                 this.isLoad = true
                 this.data = data
-                this.pathname = config.pathname
+                this.pathname = config.pathname || ''
             })
         }
     }

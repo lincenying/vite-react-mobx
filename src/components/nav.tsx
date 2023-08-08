@@ -3,13 +3,11 @@ import { NavLink } from 'react-router-dom'
 
 import { Affix } from 'antd'
 
-const Nav = () => {
+function Nav() {
     return (
         <Affix offsetTop={20}>
             <h1>
-                <NavLink to="/" exact activeClassName="current">
-                    列表
-                </NavLink>
+                <NavLink to="/">列表</NavLink>
             </h1>
         </Affix>
     )

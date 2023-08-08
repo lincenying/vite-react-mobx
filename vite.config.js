@@ -1,10 +1,10 @@
-const path = require('path')
-
 import { loadEnv } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
-import { getBabelOutputPlugin } from '@rollup/plugin-babel'
-import WindiCSS from 'vite-plugin-windicss'
-import styleImport from 'vite-plugin-style-import'
+import UnoCSS from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import vitePluginImportus from 'vite-plugin-importus'
+
+const path = require('node:path')
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -14,68 +14,62 @@ export default ({ mode }) => {
         css: {
             preprocessorOptions: {
                 less: {
-                    javascriptEnabled: true
-                }
-            }
+                    javascriptEnabled: true,
+                },
+            },
         },
         plugins: [
-            getBabelOutputPlugin(),
             reactRefresh(),
-            styleImport({
-                libs: [
+            AutoImport({
+                eslintrc: {
+                    enabled: true,
+                },
+                include: [
+                    /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+                    /\.md$/, // .md
+                ],
+                imports: [
+                    'react',
+                    'react-router-dom',
+                    'ahooks',
                     {
-                        libraryName: 'ant-design-vue',
-                        esModule: true,
-                        resolveStyle: name => {
-                            return `ant-design-vue/es/${name}/style/index`
-                        }
+                        'react-redux': ['useSelector', 'useDispatch'],
+                        '@/utils': ['setMessage'],
                     },
-                    {
-                        libraryName: 'antd',
-                        esModule: true,
-                        resolveStyle: name => {
-                            return `antd/es/${name}/style/index`
-                        }
-                    },
-                    {
-                        libraryName: 'vant',
-                        esModule: true,
-                        resolveStyle: name => {
-                            return `vant/es/${name}/style/index`
-                        }
-                    },
-                    {
-                        libraryName: 'element-plus',
-                        resolveStyle: name => {
-                            return `element-plus/lib/theme-chalk/${name}.css`
-                        },
-                        resolveComponent: name => {
-                            return `element-plus/lib/${name}`
-                        }
-                    }
-                ]
+                ],
+                dts: 'src/auto-imports.d.ts',
+                dirs: [],
+
+                resolvers: [],
+                defaultExportByFilename: false,
+                vueTemplate: false,
             }),
-            WindiCSS({
-                safelist: 'prose prose-sm m-auto text-left'
-            })
+            vitePluginImportus([
+                {
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: 'index',
+                },
+            ]),
+            UnoCSS(),
         ],
         resolve: {
             alias: {
-                '@': path.join(__dirname, './src')
-            }
+                '@': path.join(__dirname, './src'),
+            },
         },
         server: {
             port: 7773,
             proxy: {
                 '/api': {
-                    target: 'https://www.vue-js.com',
+                    target: 'https://api.mmxiaowu.com',
                     changeOrigin: true,
                     pathRewrite: {
-                        '^/api': '/api'
-                    }
-                }
-            }
-        }
+                        '^/api': '/api',
+                    },
+                },
+            },
+        },
     }
     return config
 }

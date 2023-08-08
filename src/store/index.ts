@@ -7,7 +7,7 @@ import topics from './topics'
 export const stores = Object.freeze({
     globals,
     topics,
-    article
+    article,
 })
 
 export const storesContext = React.createContext(stores)

@@ -7,7 +7,7 @@ export class GlobalStore {
 
     cookies = {}
 
-    setCookies = async config => {
+    setCookies = async (config: Obj) => {
         this.cookies = config
     }
 }
