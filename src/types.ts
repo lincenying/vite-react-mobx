@@ -202,10 +202,6 @@ export interface Message {
 }
 
 export interface GlobalStore {
-    loading?: boolean
-    cookies: UserCookies
-    showLoginModal: boolean
-    showRegisterModal: boolean
     ISDEV?: boolean
     ISPRE?: boolean
     ISPROD?: boolean
