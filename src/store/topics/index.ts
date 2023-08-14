@@ -1,8 +1,8 @@
 import { action, makeAutoObservable, observable, runInAction } from 'mobx'
 import api from '@/api'
-import type { ApiConfig, Article } from '@/types'
+import type { ApiConfig, Article, ArticleStoreList } from '@/types'
 
-export class TopicsStore {
+export class TopicsStore implements ArticleStoreList {
     constructor() {
         makeAutoObservable(this, {
             hasNext: observable,

@@ -5,13 +5,13 @@ import { observer } from 'mobx-react-lite'
 import { useMount, useUpdateEffect } from 'ahooks'
 import ls from 'store2'
 
-import { useStores } from '@/store/hooks'
+import { useStore } from '@/store'
 
 function Main() {
     const location = useLocation()
     const pathname = location.pathname
 
-    const topics = useStores().topics
+    const topics = useStore('topics')
 
     const firstPathname = useRef(pathname)
     const [showMoreBtn, setShowMoreBtn] = useState(true)

@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { useMount, useUpdateEffect } from 'ahooks'
 
 import { Card, Spin } from 'antd'
-import { useStores } from '@/store/hooks'
+import { useStore } from '@/store'
 
 function PageArticle() {
     const location = useLocation()
@@ -12,7 +12,7 @@ function PageArticle() {
     const params = useParams()
     const { id } = params
 
-    const article = useStores().article
+    const article = useStore('article')
 
     const firstPathname = useRef(pathname)
 
