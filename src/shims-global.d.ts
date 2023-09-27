@@ -33,7 +33,6 @@ declare interface ResponseDataList<T> {
     list: T
 }
 
-
 declare interface Window {
     $$api: {
         post: (...args) => Promise<any>

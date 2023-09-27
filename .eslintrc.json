@@ -1,7 +1,0 @@
-{
-  "extends": ["@lincy/eslint-config-react"],
-  "plugins": [],
-  "rules": {
-    "no-irregular-whitespace": 0
-  }
-}
