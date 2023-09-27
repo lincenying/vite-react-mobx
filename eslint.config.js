@@ -12,7 +12,17 @@ const autoImport = JSON.parse(
 const config = lincy(
     {
         vue: false,
+        overrides: {
+            stylistic: {
+                'antfu/consistent-list-newline': 'off',
+            },
+            ignores: [
+                '**/assets',
+                '**/static',
+            ],
+        },
     },
+    // unocss 相关规则
     {
         plugins: {
             '@unocss': plugin,
@@ -22,12 +32,7 @@ const config = lincy(
             '@unocss/order': 'off',
         },
     },
-    {
-        rules: {
-            'antfu/consistent-list-newline': 'off',
-        },
-    },
-
+    // react 相关规则
     {
         files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
         settings: {
@@ -80,12 +85,6 @@ const config = lincy(
                 ...autoImport.globals,
             },
         },
-    },
-    {
-        ignores: [
-            '**/assets',
-            '**/static',
-        ],
     },
 )
 
