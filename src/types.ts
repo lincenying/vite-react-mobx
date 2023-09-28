@@ -216,20 +216,11 @@ export interface ShellStore {
 }
 
 /**
- * Api 浏览器端封装类型
- */
-export interface ApiClientReturn {
-    get<T>(url: string, params?: Obj, headers?: Obj): Promise<ResponseData<T>>
-    post<T>(url: string, data?: Obj, headers?: Obj): Promise<ResponseData<T>>
-    file<T>(url: string, data?: Obj, headers?: Obj): Promise<ResponseData<T>>
-}
-
-/**
  * Api Node端封装类型
  */
 export interface ApiServerReturn {
-    post<T>(url: string, data?: Obj, headers?: Obj): Promise<ResponseData<T>>
-    get<T>(url: string, params?: Obj, headers?: Obj): Promise<ResponseData<T>>
+    post<T>(url: string, data?: Obj, headers?: Obj): Promise<ResData<T>>
+    get<T>(url: string, params?: Obj, headers?: Obj): Promise<ResData<T>>
     cookies: UserCookies
     api: AxiosInstance
     getCookies: () => UserCookies

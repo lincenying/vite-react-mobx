@@ -4,7 +4,6 @@ import NProgress from 'nprogress'
 import qs from 'qs'
 import config from './config'
 import { setMessage } from '@/utils'
-import type { ApiClientReturn } from '@/types'
 
 axios.interceptors.request.use(
     (config) => {

@@ -34,7 +34,7 @@ declare type Awaitable<T> = T | PromiseLike<T>
 /**
  * 接口返回模板
  */
-declare interface ResponseData<T> {
+declare interface ResData<T> {
     data: T
     code: number
     message: string
@@ -44,7 +44,7 @@ declare interface ResponseData<T> {
 /**
  * 接口返回模板里的 Data 数据 - 含分页的列表
  */
-declare interface ResponseDataLists<T> {
+declare interface ResDataLists<T> {
     hasNext: number | boolean
     hasPrev: number | boolean
     total: number
@@ -54,16 +54,21 @@ declare interface ResponseDataLists<T> {
 /**
  * 接口返回模板里的 Data 数据 - 不含分页的列表
  */
-declare interface ResponseDataList<T> {
+declare interface ResDataList<T> {
     list: T
 }
 
+/**
+ * Api 浏览器端封装类型
+ */
+declare interface ApiClientReturn {
+    get<T>(url: string, params?: Obj, headers?: Obj): Promise<ResData<T>>
+    post<T>(url: string, data?: Obj, headers?: Obj): Promise<ResData<T>>
+    file<T>(url: string, data?: Obj, headers?: Obj): Promise<ResData<T>>
+}
+
 declare interface Window {
-    $$api: {
-        post: (...args) => Promise<any>
-        get: (...args) => Promise<any>
-        [propName: string]: (...args) => Promise<any>
-    }
+    $$api: ApiClientReturn
     editormd: any
     postEditor: any
 }

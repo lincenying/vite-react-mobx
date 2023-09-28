@@ -44,21 +44,23 @@ function Main() {
 
     return (
         <div>
-            <List itemLayout="horizontal" dataSource={data} renderItem={item => (
+            <List dataSource={data} itemLayout="horizontal" renderItem={item => (
                 <List.Item>
-                    <List.Item.Meta
-                        title={
-                            <Link to={`/article/${item._id}`} className="li-name">
-                                {item.title}
-                            </Link>
-                        }
+                    <List.Item.Meta title={
+                        <Link className="li-name"
+                            to={`/article/${item._id}`}
+                        >
+                            {item.title}
+                        </Link>
+                    }
                     />
                 </List.Item>
             )}
             />
+
             <ul>
                 <li className="page">
-                    {showMoreBtn ? <Button type="primary" onClick={handleLoadMore}>加载下一页</Button> : <Spin /> }
+                    {showMoreBtn ? <Button onClick={handleLoadMore} type="primary">加载下一页</Button> : <Spin /> }
                 </li>
             </ul>
         </div>
