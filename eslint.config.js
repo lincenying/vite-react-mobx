@@ -9,8 +9,6 @@ const autoImport = JSON.parse(
     await readFile(new URL('./.eslintrc-auto-import.json', import.meta.url)),
 )
 
-console.log(pluginReactHooks.configs.recommended.rules)
-
 const config = lincy(
     {
         vue: false,
