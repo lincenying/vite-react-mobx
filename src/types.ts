@@ -117,6 +117,7 @@ export interface ListConfig {
 export interface AdminStoreList extends ListConfig {
     data: User[]
 }
+
 export interface AdminStoreItem {
     data: Nullable<User>
     path?: string
@@ -135,6 +136,7 @@ export interface AdminStore {
 export interface ArticleStoreList extends ListConfig {
     data: Article[]
 }
+
 export interface ArticleStore {
     lists: ArticleStoreList
     item: {
