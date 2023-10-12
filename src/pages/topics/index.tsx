@@ -47,11 +47,7 @@ function Main() {
             <List dataSource={data} itemLayout="horizontal" renderItem={item => (
                 <List.Item>
                     <List.Item.Meta title={
-                        <Link className="li-name"
-                            to={`/article/${item._id}`}
-                        >
-                            {item.title}
-                        </Link>
+                        <Link className="li-name" to={`/article/${item._id}`}>{item.title}</Link>
                     }
                     />
                 </List.Item>
