@@ -45,11 +45,11 @@ declare interface ResData<T> {
  * 接口返回模板里的 Data 数据 - 含分页的列表
  */
 declare interface ResDataLists<T> {
-    current_page: number
-    last_page: number
-    per_page: number
+    hasNext: number | boolean
+    hasPrev: number | boolean
     total: number
-    data: T
+    page: number
+    list: T[]
 }
 
 /**
