@@ -32,15 +32,15 @@ function PageArticle() {
     }, [pathname])
 
     useUpdateEffect(() => {
-        document.title = article.data.title
+        document.title = article.data.c_title
     }, [article.pathname])
 
     const { data } = article
 
     return (
         <Spin delay={100} size="large" spinning={article.pathname !== location.pathname}>
-            <Card bordered={false} title={data.title}>
-                <div className="article-content" dangerouslySetInnerHTML={{ __html: data.content }} />
+            <Card bordered={false} title={data.c_title}>
+                <div className="article-content" dangerouslySetInnerHTML={{ __html: data.c_content }} />
             </Card>
         </Spin>
     )

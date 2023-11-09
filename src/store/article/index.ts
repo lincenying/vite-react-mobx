@@ -18,7 +18,7 @@ export class ArticleStore {
 
     getArticle = async (config: ApiConfig) => {
         this.isLoad = false
-        const { code, data } = await api.get<Article>('api/frontend/article/item', config)
+        const { code, data } = await api.get<Article>(`api/ajax/article-detail`, config)
         if (code === 200) {
             runInAction(() => {
                 this.isLoad = true

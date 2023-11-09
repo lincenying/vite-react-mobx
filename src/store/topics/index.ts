@@ -19,10 +19,10 @@ export class TopicsStore implements ArticleStoreList {
     data: Article[] = []
 
     getTopics = async (config: ApiConfig) => {
-        const { code, data } = await api.get<ResDataLists<Article[]>>('api/frontend/article/list', config)
+        const { code, data } = await api.get<ResDataLists<Article[]>>('api/ajax/article-lists', config)
         if (code === 200) {
             runInAction(() => {
-                this.data = config.page === 1 ? [...data.list] : this.data.concat(data.list)
+                this.data = config.page === 1 ? [...data.data] : this.data.concat(data.data)
                 this.page = config.page || 1
                 this.pathname = config.pathname || ''
             })

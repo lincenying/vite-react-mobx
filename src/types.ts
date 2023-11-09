@@ -36,22 +36,10 @@ export interface ApiConfig {
  * 文章详情
  */
 export interface Article {
-    _id: string
-    title: string
-    content: string
-    html: string
-    toc: string
-    category: string
-    category_name: string
-    visit: number
-    like: number
-    comment_count: number
-    creat_date: string
-    update_date: string
-    is_delete: number
-    timestamp: number
-    likes: [string]
-    like_status?: boolean
+    c_id: string
+    c_title: string
+    c_content: string
+    c_posttime?: string
 }
 
 /**
