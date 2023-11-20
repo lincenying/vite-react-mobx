@@ -27,8 +27,16 @@ function App({ store }: { readonly store: AppStore }) {
         <StyleProvider hashPriority="high">
             <RootContext.Provider value={store}>
                 <div className="main flex flex-col">
-                    <TransitionGroup appear component={null}>
-                        <CSSTransition classNames="example" in={false} key={location.key} timeout={{ appear: 300, enter: 300, exit: 300 }} >
+                    <TransitionGroup
+                        appear
+                        component={null}
+                    >
+                        <CSSTransition
+                            classNames="example"
+                            in={false}
+                            key={location.key}
+                            timeout={{ appear: 300, enter: 300, exit: 300 }}
+                        >
                             {router}
                         </CSSTransition>
                     </TransitionGroup>
