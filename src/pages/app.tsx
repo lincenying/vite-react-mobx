@@ -7,7 +7,6 @@ import { StyleProvider } from '@ant-design/cssinjs'
 import PageArticle from './article/index'
 import Main from './topics/index'
 
-import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import 'toastr/build/toastr.min.css'
 import '../assets/scss/style.scss'

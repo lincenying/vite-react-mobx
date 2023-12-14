@@ -1,12 +1,31 @@
 /* 清除内外边距 */
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
-dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
-pre, /* text formatting elements 文本格式元素 */
-fieldset, button, input, textarea, /* form elements 表单元素 */
-th, td {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+fieldset,
+button,
+input,
+textarea,
+th,
+td {
+    padding: 0;
+
     /* table elements 表格元素 */
     margin: 0;
-    padding: 0;
 }
 
 /* 设置默认字体 */
@@ -15,21 +34,27 @@ button,
 input,
 select,
 textarea {
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+
     /* for ie */
-    /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+
+    /* font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif; */
     font-size: 12px;
-    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, 'sans-serif';
 }
 
 h1 {
     font-size: 18px; /* 18px / 12px = 1.5 */
 }
+
 h2 {
     font-size: 16px;
 }
+
 h3 {
     font-size: 14px;
+    text-align: center;
 }
+
 h4,
 h5,
 h6 {
@@ -48,7 +73,7 @@ kbd,
 pre,
 samp,
 tt {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
 } /* 统一等宽字体 */
 small {
     font-size: 12px;
@@ -65,6 +90,7 @@ a {
     text-decoration: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
+
 a:hover {
     text-decoration: none;
 }
@@ -76,9 +102,9 @@ acronym[title] {
     cursor: help;
 }
 
-q:before,
-q:after {
-    content: '';
+q::before,
+q::after {
+    content: "";
 }
 
 /* 重置表单元素 */
@@ -89,6 +115,7 @@ fieldset,
 img {
     border: none;
 } /* img 搭车：让链接里的 img 无边框 */
+
 /* 注：optgroup 无法扶正 */
 a,
 button,
@@ -107,15 +134,17 @@ table {
 
 /* 重置 hr */
 hr {
-    border: none;
     height: 1px;
+    border: none;
 }
 
 /* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
 body {
-    overflow-x: hidden;
-    overflow-y: scroll;
     // overflow-anchor: none;
+
+    height: auto !important;
+    overflow: hidden scroll;
+    background: #eee !important;
 }
 
 /* 其他常用样式 */
@@ -123,82 +152,85 @@ body {
 .dn {
     display: none !important;
 }
+
 .hidden,
 .vh {
     visibility: hidden !important;
 }
+
 .hide {
     opacity: 0 !important;
 }
+
 .disabled {
-    cursor: not-allowed;
     pointer-events: none;
+    cursor: not-allowed;
     opacity: 0.65;
     filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
     box-shadow: none;
 }
+
 .disabled-2,
 [disabled] {
     opacity: 0.65;
     filter: alpha(opacity=65);
-    -webkit-box-shadow: none;
     box-shadow: none;
 }
-
 
 /* 动画 */
 .example-enter {
     min-height: 100vh;
     opacity: 0;
-    transform:   translate(-200px,0);
-    transform: translate3d(-200px,0,0);
+    transform: translate(-200px, 0);
+    transform: translate3d(-200px, 0, 0);
 }
+
 .example-enter.example-enter-active {
+    z-index: 2;
     opacity: 1;
-    transform:   translate(0,0);
-    transform: translate3d(0,0,0);
+    transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
     transition-property: transform, opacity;
     transition-duration: 500ms;
-    transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
-    z-index: 2
+    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
+
 .example-exit {
     min-height: 100vh;
     opacity: 0;
-    transform:   translate(0,0);
-    transform: translate3d(0,0,0);
+    transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
     transition-property: transform, opacity;
     transition-duration: 0;
-    transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
+
 .example-exit.example-exit-active {
+    z-index: 1;
     opacity: 0;
-    transform:   translate(0, 0);
+    transform: translate(0, 0);
     transform: translate3d(0, 0, 0);
-    z-index: 1
 }
 
 //////////////////////////////////////////
 
-body {
-    height: auto !important;
-    background: #eee !important;
-}
 .main {
     width: 1024px;
-    margin: 0 auto;
     padding: 20px;
+    margin: 0 auto;
     background: #fff;
     box-shadow: 0 0 5px #999;
+
     ul {
         li {
-            list-style: none;
             padding: 10px 0;
+            list-style: none;
+
             .li-name {
                 display: inline-block;
                 padding-left: 10px;
             }
+
             &.page {
                 height: 32px;
                 text-align: center;
@@ -213,26 +245,23 @@ body {
 }
 
 .reply-item {
+    padding-top: 8px;
+    border-bottom: 1px dashed #ccc;
+
     h5 {
         span {
-            font-weight: 400;
             font-size: 12px;
+            font-weight: 400;
         }
     }
 }
 
-h3 {
-    text-align: center;
-}
 .article-content {
     word-wrap: break-word;
 }
+
 .reply {
     border-top: 1px solid #ccc;
-}
-.reply-item {
-    padding-top: 8px;
-    border-bottom: 1px dashed #ccc;
 }
 
 pre {
