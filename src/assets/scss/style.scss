@@ -34,7 +34,7 @@ button,
 input,
 select,
 textarea {
-    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
 
     /* for ie */
 
@@ -73,7 +73,7 @@ kbd,
 pre,
 samp,
 tt {
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
 } /* 统一等宽字体 */
 small {
     font-size: 12px;
@@ -104,7 +104,7 @@ acronym[title] {
 
 q::before,
 q::after {
-    content: "";
+    content: '';
 }
 
 /* 重置表单元素 */
