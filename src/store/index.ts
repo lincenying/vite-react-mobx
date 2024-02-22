@@ -21,7 +21,8 @@ const appStore = new AppStore()
 export const createStore = () => appStore
 export const RootContext = React.createContext<AppStore>(appStore)
 export function useStore<T extends keyof AppStore>(key: T): AppStore[T] {
-    const root = useContext(RootContext)
-
-    return root[key]
+    return useContext(RootContext)[key]
+}
+export function useStores() {
+    return useContext(RootContext)
 }

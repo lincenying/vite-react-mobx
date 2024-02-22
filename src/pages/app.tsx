@@ -25,7 +25,7 @@ function App({ store }: { readonly store: AppStore }) {
     return (
         <StyleProvider hashPriority="high">
             <RootContext.Provider value={store}>
-                <div className="main flex flex-col">
+                <div className="flex flex-col">
                     <TransitionGroup
                         appear
                         component={null}

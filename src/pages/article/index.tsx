@@ -7,6 +7,8 @@ import { Card, Spin } from 'antd'
 import { useStore } from '@/store'
 
 function PageArticle() {
+    const navigate = useNavigate()
+
     const location = useLocation()
     const pathname = location.pathname
     const params = useParams()
@@ -38,21 +40,24 @@ function PageArticle() {
     const { data } = article
 
     return (
-        <Spin
-            delay={100}
-            size="large"
-            spinning={article.pathname !== location.pathname}
-        >
-            <Card
-                bordered={false}
-                title={data.c_title}
+        <div className="main">
+            <Spin
+                delay={100}
+                size="large"
+                spinning={article.pathname !== location.pathname}
             >
-                <div
-                    className="article-content"
-                    dangerouslySetInnerHTML={{ __html: data.c_content }}
-                />
-            </Card>
-        </Spin>
+                <Card
+                    bordered={false}
+                    title={data.c_title}
+                    extra={<a onClick={() => navigate(-1)}>后退</a>}
+                >
+                    <div
+                        className="article-content"
+                        dangerouslySetInnerHTML={{ __html: data.c_content }}
+                    />
+                </Card>
+            </Spin>
+        </div>
     )
 }
 export default observer(PageArticle)

@@ -1,16 +1,10 @@
-import { action, makeAutoObservable, observable, runInAction } from 'mobx'
+import { makeAutoObservable, runInAction } from 'mobx'
 import api from '@/api'
 import type { ApiConfig, Article, ArticleStoreList } from '@/types'
 
 export class TopicsStore implements ArticleStoreList {
     constructor() {
-        makeAutoObservable(this, {
-            hasNext: observable,
-            page: observable,
-            pathname: observable,
-            data: observable,
-            getTopics: action,
-        })
+        makeAutoObservable(this)
     }
 
     hasNext = 0
@@ -18,9 +12,10 @@ export class TopicsStore implements ArticleStoreList {
     pathname = ''
     data: Article[] = []
 
-    getTopics = async (config: ApiConfig) => {
+    async getTopics(config: ApiConfig) {
         const { code, data } = await api.get<ResDataLists<Article>>('api/ajax/article-lists', config)
         if (code === 200) {
+            // 在async/await函数中, 赋值需要在runInAction中
             runInAction(() => {
                 this.data = this.data.concat(data.list)
                 this.page = config.page || 1
