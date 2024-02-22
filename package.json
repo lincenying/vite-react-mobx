@@ -11,6 +11,7 @@
     "start": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "lint:ts": "tsc --noEmit",
     "lint:css": "stylelint '**/*.{css,scss}' --fix"
   },
   "dependencies": {
