@@ -1,7 +1,4 @@
 import type { ReactNode } from 'react'
-import { useRef } from 'react'
-import { useLocation } from 'react-router-dom'
-import { useUpdateEffect } from 'ahooks'
 
 interface Props {
     children?: ReactNode

@@ -7,7 +7,7 @@ function pluralize(time: number, label: string) {
     return time + label
 }
 
-export function setMessage(config: Message | string) {
+export function showMessage(config: Message | string) {
     let content: string, type: 'success' | 'warning' | 'info' | 'error'
     if (typeof config === 'string') {
         content = config

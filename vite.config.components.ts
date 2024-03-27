@@ -21,11 +21,13 @@ export default (): PluginOption[] => ([
             'ahooks',
             {
                 'react-redux': ['useSelector', 'useDispatch'],
-                '@/utils': ['setMessage'],
             },
         ],
         dts: 'src/auto-imports.d.ts',
-        dirs: [],
+        dirs: [
+            'src/stores/**',
+            'src/composables',
+        ],
 
         resolvers: [],
         defaultExportByFilename: false,

@@ -1,10 +1,6 @@
-import React, { useEffect, useRef } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import { useMount, useUpdateEffect } from 'ahooks'
 
 import { Card, Spin } from 'antd'
-import { useStore } from '@/store'
 
 function PageArticle() {
     const navigate = useNavigate()

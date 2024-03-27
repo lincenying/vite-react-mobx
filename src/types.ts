@@ -1,11 +1,5 @@
 import type { AxiosInstance } from 'axios'
 
-export interface AnyArray {
-    [index: number]: any
-}
-
-export type Fn = (...args: any[]) => void
-
 /**
  * 请求参数合集
  * ```

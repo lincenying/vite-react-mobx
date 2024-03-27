@@ -1,17 +1,15 @@
-// import ScrollToTop from '~/components/global/ScrollToTop.tsx'
-import React from 'react'
-import { useLocation } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { StyleProvider } from '@ant-design/cssinjs'
 
 import PageArticle from './article/index'
 import Main from './topics/index'
 
+import type { AppStore } from '@/stores'
+
 import 'uno.css'
 import 'toastr/build/toastr.min.css'
 import '../assets/scss/style.scss'
 import 'nprogress/nprogress.css'
-import { type AppStore, RootContext } from '@/store'
 
 const routerList = [
     { path: '/', element: <Main /> },
@@ -25,7 +23,7 @@ function App({ store }: { readonly store: AppStore }) {
     return (
         <StyleProvider hashPriority="high">
             <RootContext.Provider value={store}>
-                <div className="flex flex-col">
+                <div flex="~ col">
                     <TransitionGroup
                         appear
                         component={null}

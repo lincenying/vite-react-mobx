@@ -1,11 +1,6 @@
 import { Button, List, Spin } from 'antd'
-import React, { useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import { useMount, useUpdateEffect } from 'ahooks'
 import ls from 'store2'
-
-import { useStore } from '@/store'
 
 function Main() {
     const location = useLocation()

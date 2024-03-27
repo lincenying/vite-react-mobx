@@ -2,8 +2,6 @@ import type { AxiosResponse } from 'axios'
 import axios from 'axios'
 import NProgress from 'nprogress'
 import qs from 'qs'
-import config from './config'
-import { setMessage } from '@/utils'
 
 axios.interceptors.request.use(
     (config) => {
@@ -42,7 +40,7 @@ function checkCode(res: AxiosResponse) {
         window.location.href = '/'
 
     else if (res.data.code !== 200)
-        setMessage(res.data.message)
+        showMessage(res.data.message)
 
     return res.data
 }
@@ -75,9 +73,9 @@ const _api: API = () => ({
     async post(url, data) {
         const response = await axios({
             method: 'post',
-            url: config.api + url,
+            url: apiConfig.api + url,
             data: qs.stringify(data),
-            timeout: config.timeout,
+            timeout: apiConfig.timeout,
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -89,9 +87,9 @@ const _api: API = () => ({
     async get(url, params) {
         const response = await axios({
             method: 'get',
-            url: config.api + url,
+            url: apiConfig.api + url,
             params,
-            timeout: config.timeout,
+            timeout: apiConfig.timeout,
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
             },
@@ -101,4 +99,4 @@ const _api: API = () => ({
     },
 })
 
-export default _api()
+export const $api = _api()

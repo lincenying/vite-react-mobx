@@ -1,5 +1,4 @@
 import { makeAutoObservable, runInAction } from 'mobx'
-import api from '@/api'
 import type { ApiConfig, Article, ArticleStoreList } from '@/types'
 
 export class TopicsStore implements ArticleStoreList {
@@ -13,7 +12,7 @@ export class TopicsStore implements ArticleStoreList {
     data: Article[] = []
 
     async getTopics(config: ApiConfig) {
-        const { code, data } = await api.get<ResDataLists<Article>>('api/ajax/article-lists', config)
+        const { code, data } = await $api.get<ResDataLists<Article>>('api/ajax/article-lists', config)
         if (code === 200) {
             // 在async/await函数中, 赋值需要在runInAction中
             runInAction(() => {

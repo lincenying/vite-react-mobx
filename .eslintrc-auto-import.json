@@ -116,6 +116,24 @@
     "useUpdateLayoutEffect": true,
     "useVirtualList": true,
     "useWebSocket": true,
-    "useWhyDidYouUpdate": true
+    "useWhyDidYouUpdate": true,
+    "AppStore": true,
+    "ArticleStore": true,
+    "GlobalStore": true,
+    "RootContext": true,
+    "TopicsStore": true,
+    "apiConfig": true,
+    "createStore": true,
+    "fetch": true,
+    "showMessage": true,
+    "strlen": true,
+    "timeAgo": true,
+    "timeYmd": true,
+    "useArticleStore": true,
+    "useGlobalStore": true,
+    "useStore": true,
+    "useStores": true,
+    "useTopicsStore": true,
+    "$api": true
   }
 }
