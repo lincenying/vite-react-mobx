@@ -20,8 +20,9 @@ axios.interceptors.response.use(
 
 function checkStatus(response: AxiosResponse) {
     NProgress.done()
-    if (response.status === 200 || response.status === 304)
+    if (response.status === 200 || response.status === 304) {
         return response
+    }
 
     return {
         data: {
@@ -33,14 +34,17 @@ function checkStatus(response: AxiosResponse) {
 }
 
 function checkCode(res: AxiosResponse) {
-    if (res.data.code === -500)
+    if (res.data.code === -500) {
         window.location.href = '/backend'
+    }
 
-    else if (res.data.code === -400)
+    else if (res.data.code === -400) {
         window.location.href = '/'
+    }
 
-    else if (res.data.code !== 200)
+    else if (res.data.code !== 200) {
         showMessage(res.data.message)
+    }
 
     return res.data
 }

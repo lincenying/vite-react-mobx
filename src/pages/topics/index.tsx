@@ -13,13 +13,15 @@ function Main() {
 
     useMount(() => {
         console.log('topics componentDidMount')
-        if (topics.pathname !== location.pathname)
+        if (topics.pathname !== location.pathname) {
             topics.getTopics({ page: 1, pathname })
+        }
 
         const scrollTop = ls.get(pathname) || 0
         ls.remove(pathname)
-        if (scrollTop)
+        if (scrollTop) {
             window.scrollTo(0, scrollTop)
+        }
 
         document.title = 'M.M.M 小屋'
     })

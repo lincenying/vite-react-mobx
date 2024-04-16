@@ -26,9 +26,10 @@ export function strlen(str: string) {
     let realLength = 0
     for (let i = 0; i < len; i++) {
         charCode = str.charCodeAt(i)
-        if (charCode >= 0 && charCode <= 128)
+        if (charCode >= 0 && charCode <= 128) {
             realLength += 1
-        else realLength += 2
+        }
+        else { realLength += 2 }
     }
     return realLength
 }
@@ -41,14 +42,17 @@ export function timeAgo(time: string | number) {
         time = `${tmp / 1000}`
     }
     const between = Date.now() / 1000 - Number(time)
-    if (between < 60)
+    if (between < 60) {
         return '刚刚'
+    }
 
-    else if (between < 3600)
+    else if (between < 3600) {
         return pluralize(Math.floor(between / 60), ' 分钟前')
+    }
 
-    else if (between < 86400)
+    else if (between < 86400) {
         return pluralize(Math.floor(between / 3600), ' 小时前')
+    }
 
     return pluralize(Math.floor(between / 86400), ' 天前')
 }
