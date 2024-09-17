@@ -1,6 +1,6 @@
-import { observer } from 'mobx-react-lite'
-
 import { Card, Spin } from 'antd'
+
+import { observer } from 'mobx-react-lite'
 
 function PageArticle() {
     const navigate = useNavigate()

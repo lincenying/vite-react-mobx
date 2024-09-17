@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { GlobalStore } from './use-global-store'
 import { ArticleStore } from './use-article-store'
+import { GlobalStore } from './use-global-store'
 import { TopicsStore } from './use-topics-store'
 
 export class AppStore {

@@ -1,5 +1,5 @@
+import type { UserCookies } from '~/types'
 import { makeAutoObservable } from 'mobx'
-import type { UserCookies } from '@/types'
 
 export class GlobalStore {
     constructor() {

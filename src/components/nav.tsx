@@ -1,6 +1,6 @@
-import React from 'react'
-
 import { Affix } from 'antd'
+
+import React from 'react'
 
 function Nav() {
     return (

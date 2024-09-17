@@ -1,6 +1,6 @@
+import type { PluginOption } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import vitePluginImportus from 'vite-plugin-importus'
-import type { PluginOption } from 'vite'
 
 export default (): PluginOption[] => ([
     /**

@@ -1,10 +1,10 @@
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import type { AppStore } from '@/stores'
 import { StyleProvider } from '@ant-design/cssinjs'
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import PageArticle from './article/index'
-import Main from './topics/index'
 
-import type { AppStore } from '@/stores'
+import Main from './topics/index'
 
 import 'uno.css'
 import 'toastr/build/toastr.min.css'

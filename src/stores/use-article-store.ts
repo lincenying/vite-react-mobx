@@ -1,5 +1,5 @@
+import type { ApiConfig, Article } from '~/types'
 import { makeAutoObservable, runInAction } from 'mobx'
-import type { ApiConfig, Article } from '@/types'
 
 export class ArticleStore {
     constructor() {
