@@ -48,7 +48,7 @@ function Main() {
                     <List.Item>
                         <List.Item.Meta title={
                             <Link className="li-name" to={`/article/${item.c_id}`}>{item.c_title}</Link>
-                    }
+                        }
                         />
                     </List.Item>
                 )}
