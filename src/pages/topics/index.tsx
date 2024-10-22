@@ -2,7 +2,7 @@ import { Button, List, Spin } from 'antd'
 import { observer } from 'mobx-react-lite'
 import ls from 'store2'
 
-function Main() {
+const Main = observer(() => {
     const location = useLocation()
     const pathname = location.pathname
 
@@ -61,6 +61,6 @@ function Main() {
             </ul>
         </div>
     )
-}
+})
 
-export default observer(Main)
+export default Main
