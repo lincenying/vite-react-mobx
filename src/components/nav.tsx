@@ -1,8 +1,9 @@
 import { Affix } from 'antd'
+import { observer } from 'mobx-react-lite'
 
 import React from 'react'
 
-function Nav() {
+const Nav = observer(() => {
     return (
         <Affix offsetTop={20}>
             <h1>
@@ -12,6 +13,6 @@ function Nav() {
             </h1>
         </Affix>
     )
-}
+})
 
 export default Nav

@@ -2,7 +2,7 @@ import { Card, Spin } from 'antd'
 
 import { observer } from 'mobx-react-lite'
 
-function PageArticle() {
+const PageArticle = observer(() => {
     const navigate = useNavigate()
 
     const location = useLocation()
@@ -56,5 +56,5 @@ function PageArticle() {
             </Spin>
         </div>
     )
-}
-export default observer(PageArticle)
+})
+export default PageArticle

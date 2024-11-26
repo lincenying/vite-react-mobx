@@ -3,3 +3,5 @@ interface ImportMetaEnv {
     readonly VITE_APP_API: string
     // 更多环境变量...
 }
+
+declare module 'eslint-plugin-mobx'

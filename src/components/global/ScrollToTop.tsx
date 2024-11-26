@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react'
+import { observer } from 'mobx-react-lite'
 
 interface Props {
     children?: ReactNode
 }
 
-export default function ScrollToTop(props: Props) {
+export default observer((props: Props) => {
     const location = useLocation()
     const pathname = location.pathname
     const firstPathname = useRef(pathname)
@@ -16,4 +17,4 @@ export default function ScrollToTop(props: Props) {
     }, [props])
 
     return props.children
-}
+})
