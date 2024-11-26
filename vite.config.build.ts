@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const config: { server: ServerOptions; build: BuildOptions } = {
+const config: { server: ServerOptions, build: BuildOptions } = {
     server: {
         port: 3001,
         host: '0.0.0.0',

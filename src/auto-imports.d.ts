@@ -142,3 +142,18 @@ declare global {
   const useWebSocket: typeof import('ahooks')['useWebSocket']
   const useWhyDidYouUpdate: typeof import('ahooks')['useWhyDidYouUpdate']
 }
+// for type re-export
+declare global {
+  // @ts-ignore
+  export type { AppStore } from './stores/index'
+  import('./stores/index')
+  // @ts-ignore
+  export type { ArticleStore } from './stores/use-article-store'
+  import('./stores/use-article-store')
+  // @ts-ignore
+  export type { GlobalStore } from './stores/use-global-store'
+  import('./stores/use-global-store')
+  // @ts-ignore
+  export type { TopicsStore } from './stores/use-topics-store'
+  import('./stores/use-topics-store')
+}
