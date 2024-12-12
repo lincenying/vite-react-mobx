@@ -35,7 +35,16 @@ const config: { server: ServerOptions, build: BuildOptions } = {
                 main: path.resolve(__dirname, 'index.html'),
             },
             // external: /\.\/assets.*/,
-            // output: {
+            output: {
+                manualChunks(id: string) {
+                    // 处理css分块
+                    if (id.includes('node_modules')) {
+                        return 'vendor'
+                    }
+                    if (id.includes('__uno.css')) {
+                        return 'unocss'
+                    }
+                },
             //     manualChunks(id: string) {
             //         if (id.includes('node_modules')) {
             //             if (id.includes('echarts') || id.includes('zrender'))
@@ -43,7 +52,7 @@ const config: { server: ServerOptions, build: BuildOptions } = {
             //             return 'vendor'
             //         }
             //     },
-            // },
+            },
         },
     },
 }
