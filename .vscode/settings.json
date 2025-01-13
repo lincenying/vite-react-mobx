@@ -15,11 +15,8 @@
     "source.fixAll.stylelint": "explicit",
     "source.organizeImports": "never"
   },
-  // Disable the default formatter
-  "editor.formatOnSave": false,
   "eslint.options": {
     "flags": [
-      "unstable_ts_config"
     ]
   },
   // Silent the stylistic rules in you IDE, but still auto fix them
@@ -63,12 +60,6 @@
     "pcss",
     "postcss"
   ],
-  "prettier.enable": true,
-  /**
-   * 解决 unocss @apply 警告问题
-   * @see https://github.com/tailwindlabs/tailwindcss/discussions/5258#discussioncomment-1979394
-   */
-  "scss.lint.unknownAtRules": "ignore",
   "stylelint.validate": [
     "css",
     "scss",

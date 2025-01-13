@@ -124,6 +124,7 @@ declare global {
   const useStores: typeof import('./stores/index')['useStores']
   const useSyncExternalStore: typeof import('react')['useSyncExternalStore']
   const useTextSelection: typeof import('ahooks')['useTextSelection']
+  const useTheme: typeof import('ahooks')['useTheme']
   const useThrottle: typeof import('ahooks')['useThrottle']
   const useThrottleEffect: typeof import('ahooks')['useThrottleEffect']
   const useThrottleFn: typeof import('ahooks')['useThrottleFn']
