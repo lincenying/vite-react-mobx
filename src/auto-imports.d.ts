@@ -34,6 +34,7 @@ declare global {
   const useAntdTable: typeof import('ahooks')['useAntdTable']
   const useArticleStore: typeof import('./stores/use-article-store')['default']
   const useAsyncEffect: typeof import('ahooks')['useAsyncEffect']
+  const useAutoScroll: typeof import('./composables/index')['useAutoScroll']
   const useBoolean: typeof import('ahooks')['useBoolean']
   const useCallback: typeof import('react')['useCallback']
   const useClickAway: typeof import('ahooks')['useClickAway']

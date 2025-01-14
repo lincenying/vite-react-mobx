@@ -1,6 +1,6 @@
 import { Button, List, Spin } from 'antd'
 import { observer } from 'mobx-react-lite'
-import ls from 'store2'
+import { useAutoScroll } from '~/composables'
 
 const Main = observer(() => {
     const location = useLocation()
@@ -17,12 +17,6 @@ const Main = observer(() => {
             topics.getTopics({ page: 1, pathname })
         }
 
-        const scrollTop = ls.get(pathname) || 0
-        ls.remove(pathname)
-        if (scrollTop) {
-            window.scrollTo(0, scrollTop)
-        }
-
         document.title = 'M.M.M 小屋'
     })
 
@@ -36,6 +30,8 @@ const Main = observer(() => {
         await topics.getTopics({ page: topics.page + 1, pathname })
         setShowMoreBtn(true)
     }
+
+    useAutoScroll('list')
 
     const { data } = topics
 

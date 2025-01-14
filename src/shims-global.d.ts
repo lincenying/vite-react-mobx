@@ -66,6 +66,9 @@ declare interface ApiClientReturn {
 
 declare interface Window {
     $$api: ApiClientReturn
+    $timeout: {
+        [x: string]: Node.Timeout
+    }
     editormd: any
     postEditor: any
 }

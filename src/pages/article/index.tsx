@@ -3,9 +3,13 @@ import { Card, Spin } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 const PageArticle = observer(() => {
+    if (window.$timeout.list)
+        clearTimeout(window.$timeout.list)
+
     const navigate = useNavigate()
 
     const location = useLocation()
+
     const pathname = location.pathname
     const params = useParams()
     const { id } = params
@@ -22,7 +26,6 @@ const PageArticle = observer(() => {
 
     useMount(() => {
         console.log('article componentDidMount')
-        window.scrollTo(0, 0)
     })
 
     useUpdateEffect(() => {
@@ -39,14 +42,19 @@ const PageArticle = observer(() => {
     return (
         <div className="main">
             <Spin
-                delay={100}
                 size="large"
                 spinning={article.pathname !== location.pathname}
             >
                 <Card
                     bordered={false}
                     title={data.c_title}
-                    extra={<a onClick={() => navigate(-1)}>后退</a>}
+                    extra={(
+                        <div>
+                            <a onClick={() => navigate('/')}>首页</a>
+                            {' '}
+                            <a onClick={() => navigate(-1)}>后退</a>
+                        </div>
+                    )}
                 >
                     <div
                         className="article-content"
