@@ -135,6 +135,7 @@
     "useStores": true,
     "useTopicsStore": true,
     "$api": true,
-    "useTheme": true
+    "useTheme": true,
+    "useAutoScroll": true
   }
 }

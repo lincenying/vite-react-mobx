@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const config: { server: ServerOptions, build: BuildOptions } = {
     server: {
-        port: 3001,
+        port: 3004,
         host: '0.0.0.0',
         open: true,
         proxy: { // 代理配置
