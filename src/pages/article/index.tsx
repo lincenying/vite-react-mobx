@@ -1,3 +1,4 @@
+/* eslint-disable react-dom/no-dangerously-set-innerhtml */
 import { Card, Spin } from 'antd'
 
 import { observer } from 'mobx-react-lite'

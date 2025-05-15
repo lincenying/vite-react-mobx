@@ -19,7 +19,7 @@ const App = observer(({ store }: { readonly store: AppStore }) => {
 
     return (
         <StyleProvider hashPriority="high">
-            <RootContext.Provider value={memoizedStore}>
+            <RootContext value={memoizedStore}>
                 <div flex="~ col">
                     <div ref={nodeRef}>
                         <Routes>
@@ -34,7 +34,7 @@ const App = observer(({ store }: { readonly store: AppStore }) => {
                         </Routes>
                     </div>
                 </div>
-            </RootContext.Provider>
+            </RootContext>
         </StyleProvider>
     )
 })

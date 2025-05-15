@@ -1,6 +1,5 @@
 import { Button, List, Spin } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { useAutoScroll } from '~/composables'
 
 const Main = observer(() => {
     const location = useLocation()

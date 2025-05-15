@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use } from 'react'
 
 import { ArticleStore } from './use-article-store'
 import { GlobalStore } from './use-global-store'
@@ -23,8 +23,8 @@ export const createStore = () => appStore
 export const RootContext = React.createContext<AppStore>(appStore)
 
 export function useStore<T extends keyof AppStore>(key: T): AppStore[T] {
-    return useContext(RootContext)[key]
+    return use(RootContext)[key]
 }
 export function useStores() {
-    return useContext(RootContext)
+    return use(RootContext)
 }
