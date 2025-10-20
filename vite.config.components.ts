@@ -17,7 +17,7 @@ export default (): PluginOption[] => ([
         ],
         imports: [
             'react',
-            'react-router-dom',
+            'react-router',
             'ahooks',
             {
                 'react-redux': ['useSelector', 'useDispatch'],

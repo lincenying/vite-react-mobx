@@ -10,6 +10,7 @@ import 'uno.css'
 import 'toastr/build/toastr.min.css'
 import '../assets/scss/style.scss'
 import 'nprogress/nprogress.css'
+import { Route, Routes } from 'react-router'
 
 const App = observer(({ store }: { readonly store: AppStore }) => {
     const nodeRef = useRef(null)
