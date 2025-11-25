@@ -47,7 +47,7 @@ const PageArticle = observer(() => {
                 spinning={article.pathname !== location.pathname}
             >
                 <Card
-                    bordered={false}
+                    variant="outlined"
                     title={data.c_title}
                     extra={(
                         <div>

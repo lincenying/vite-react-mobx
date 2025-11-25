@@ -1,4 +1,4 @@
-import { Button, List, Spin } from 'antd'
+import { Button, Spin } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router'
 
@@ -37,20 +37,14 @@ const Main = observer(() => {
 
     return (
         <div className="main">
-            <List
-                dataSource={data}
-                itemLayout="horizontal"
-                renderItem={item => (
-                    <List.Item>
-                        <List.Item.Meta title={
-                            <Link className="li-name" to={`/article/${item.c_id}`}>{item.c_title}</Link>
-                        }
-                        />
-                    </List.Item>
-                )}
-            />
-
             <ul>
+                {
+                    data.map(item => (
+                        <li key={item.c_id}>
+                            <Link className="li-name" to={`/article/${item.c_id}`}>{item.c_title}</Link>
+                        </li>
+                    ))
+                }
                 <li className="page">
                     {showMoreBtn ? <Button onClick={handleLoadMore} type="primary">加载下一页</Button> : <Spin /> }
                 </li>
