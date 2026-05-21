@@ -7,14 +7,20 @@
 export {}
 declare global {
   const $api: typeof import('./composables/fetch').$api
+  const Activity: typeof import('react').Activity
+  const Fragment: typeof import('react').Fragment
   const Link: typeof import('react-router-dom').Link
   const NavLink: typeof import('react-router-dom').NavLink
   const Navigate: typeof import('react-router-dom').Navigate
   const Outlet: typeof import('react-router-dom').Outlet
   const Route: typeof import('react-router-dom').Route
   const Routes: typeof import('react-router-dom').Routes
+  const Suspense: typeof import('react').Suspense
   const apiConfig: typeof import('./composables/config').apiConfig
   const articleState: typeof import('./stores/use-article-store').articleState
+  const cache: typeof import('react').cache
+  const cacheSignal: typeof import('react').cacheSignal
+  const createContext: typeof import('react').createContext
   const createRef: typeof import('react').createRef
   const errConfig: typeof import('./stores/use-global-store').errConfig
   const forwardRef: typeof import('react').forwardRef
@@ -32,6 +38,8 @@ declare global {
   const timeAgo: typeof import('./composables/index').timeAgo
   const timeYmd: typeof import('./composables/index').timeYmd
   const topicsState: typeof import('./stores/use-topics-store').topicsState
+  const use: typeof import('react').use
+  const useActionState: typeof import('react').useActionState
   const useAntdTable: typeof import('ahooks').useAntdTable
   const useAppDispatch: typeof import('./stores/use-store-hooks').useAppDispatch
   const useAppSelector: typeof import('./stores/use-store-hooks').useAppSelector
@@ -60,6 +68,7 @@ declare global {
   const useDrop: typeof import('ahooks').useDrop
   const useDynamicList: typeof import('ahooks').useDynamicList
   const useEffect: typeof import('react').useEffect
+  const useEffectEvent: typeof import('react').useEffectEvent
   const useEventEmitter: typeof import('ahooks').useEventEmitter
   const useEventListener: typeof import('ahooks').useEventListener
   const useEventTarget: typeof import('ahooks').useEventTarget
@@ -98,6 +107,7 @@ declare global {
   const useNavigate: typeof import('react-router').useNavigate
   const useNavigationType: typeof import('react-router').useNavigationType
   const useNetwork: typeof import('ahooks').useNetwork
+  const useOptimistic: typeof import('react').useOptimistic
   const useOutlet: typeof import('react-router').useOutlet
   const useOutletContext: typeof import('react-router').useOutletContext
   const usePagination: typeof import('ahooks').usePagination
