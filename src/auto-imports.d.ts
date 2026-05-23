@@ -6,41 +6,27 @@
 // biome-ignore lint: disable
 export {}
 declare global {
-  const $request: typeof import('./utils/index').$request
   const Activity: typeof import('react').Activity
-  const AppStore: typeof import('./stores/index').AppStore
-  const ArticleStore: typeof import('./stores/use-article-store').ArticleStore
   const Fragment: typeof import('react').Fragment
-  const GlobalStore: typeof import('./stores/use-global-store').GlobalStore
   const Link: typeof import('react-router-dom').Link
   const NavLink: typeof import('react-router-dom').NavLink
   const Navigate: typeof import('react-router-dom').Navigate
   const Outlet: typeof import('react-router-dom').Outlet
-  const RootContext: typeof import('./stores/index').RootContext
   const Route: typeof import('react-router-dom').Route
   const Routes: typeof import('react-router-dom').Routes
   const Suspense: typeof import('react').Suspense
-  const TopicsStore: typeof import('./stores/use-topics-store').TopicsStore
-  const apiConfig: typeof import('./utils/request').apiConfig
   const cache: typeof import('react').cache
   const cacheSignal: typeof import('react').cacheSignal
   const createContext: typeof import('react').createContext
   const createRef: typeof import('react').createRef
-  const createStore: typeof import('./stores/index').createStore
   const forwardRef: typeof import('react').forwardRef
   const lazy: typeof import('react').lazy
   const memo: typeof import('react').memo
-  const request: typeof import('./utils/request').default
-  const showMessage: typeof import('./utils/message').showMessage
   const startTransition: typeof import('react').startTransition
-  const strlen: typeof import('./utils/index').strlen
-  const timeAgo: typeof import('./utils/index').timeAgo
-  const timeYmd: typeof import('./utils/index').timeYmd
   const use: typeof import('react').use
   const useActionState: typeof import('react').useActionState
   const useAntdTable: typeof import('ahooks').useAntdTable
   const useAsyncEffect: typeof import('ahooks').useAsyncEffect
-  const useAutoScroll: typeof import('./hooks/useAutoScroll').useAutoScroll
   const useBoolean: typeof import('ahooks').useBoolean
   const useCallback: typeof import('react').useCallback
   const useClickAway: typeof import('ahooks').useClickAway
@@ -126,8 +112,6 @@ declare global {
   const useSetState: typeof import('ahooks').useSetState
   const useSize: typeof import('ahooks').useSize
   const useState: typeof import('react').useState
-  const useStore: typeof import('./stores/index').useStore
-  const useStores: typeof import('./stores/index').useStores
   const useSyncExternalStore: typeof import('react').useSyncExternalStore
   const useTextSelection: typeof import('ahooks').useTextSelection
   const useTheme: typeof import('ahooks').useTheme
@@ -147,19 +131,4 @@ declare global {
   const useVirtualList: typeof import('ahooks').useVirtualList
   const useWebSocket: typeof import('ahooks').useWebSocket
   const useWhyDidYouUpdate: typeof import('ahooks').useWhyDidYouUpdate
-}
-// for type re-export
-declare global {
-  // @ts-ignore
-  export type { AppStore } from './stores/index'
-  import('./stores/index')
-  // @ts-ignore
-  export type { ArticleStore } from './stores/use-article-store'
-  import('./stores/use-article-store')
-  // @ts-ignore
-  export type { GlobalStore } from './stores/use-global-store'
-  import('./stores/use-global-store')
-  // @ts-ignore
-  export type { TopicsStore } from './stores/use-topics-store'
-  import('./stores/use-topics-store')
 }

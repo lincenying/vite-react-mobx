@@ -88,7 +88,7 @@ ol {
 /* 重置文本格式元素 */
 a {
     text-decoration: none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: rgb(255, 255, 255, 0);
 }
 
 a:hover {
@@ -97,9 +97,10 @@ a:hover {
 
 abbr[title],
 acronym[title] {
+    cursor: help;
+
     /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
     border-bottom: 1px dotted;
-    cursor: help;
 }
 
 q::before,
@@ -165,16 +166,16 @@ body {
 .disabled {
     pointer-events: none;
     cursor: not-allowed;
-    opacity: 0.65;
     filter: alpha(opacity=65);
     box-shadow: none;
+    opacity: 0.65;
 }
 
 .disabled-2,
 [disabled] {
-    opacity: 0.65;
     filter: alpha(opacity=65);
     box-shadow: none;
+    opacity: 0.65;
 }
 
 /* 动画 */
@@ -188,21 +189,21 @@ body {
 .example-enter.example-enter-active {
     z-index: 2;
     opacity: 1;
+    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+    transition-duration: 500ms;
+    transition-property: transform, opacity;
     transform: translate(0, 0);
     transform: translate3d(0, 0, 0);
-    transition-property: transform, opacity;
-    transition-duration: 500ms;
-    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
 
 .example-exit {
     min-height: 100vh;
     opacity: 0;
+    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+    transition-duration: 0;
+    transition-property: transform, opacity;
     transform: translate(0, 0);
     transform: translate3d(0, 0, 0);
-    transition-property: transform, opacity;
-    transition-duration: 0;
-    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
 
 .example-exit.example-exit-active {
@@ -217,7 +218,7 @@ body {
 .main {
     width: 1024px;
     min-height: calc(100vh - 40px);
-    padding: 20px;
+    padding: 40px 20px 20px;
     margin: 0 auto;
     background: #fff;
     box-shadow: 0 0 5px #999;
@@ -258,7 +259,7 @@ body {
 }
 
 .article-content {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .reply {

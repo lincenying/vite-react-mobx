@@ -1,5 +1,18 @@
 # 改动记录
 
+## 2026-05-23 08:10:00
+
+### 改动内容
+
+- 新增 `src/components/Nav.tsx`，修复 `BasicLayout` 中 `~/components/Nav` 无法解析的 Vite 报错
+- 导航栏展示站点标题与用户 Cookie 中的用户名
+
+### Commit Message
+
+```
+fix: 补充缺失的 Nav 导航组件
+```
+
 ## 2026-05-23
 
 ### 改动内容

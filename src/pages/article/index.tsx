@@ -1,6 +1,7 @@
 import { Button, Card, Spin } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useStore } from '~/stores'
 
 const ArticlePage = observer(() => {
     if (window.$timeout?.list) {

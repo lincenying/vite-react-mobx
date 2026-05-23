@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { Link, useLocation } from 'react-router-dom'
 
 import { useAutoScroll } from '~/hooks/useAutoScroll'
+import { useStore } from '~/stores'
 
 const TopicsPage = observer(() => {
     const location = useLocation()
