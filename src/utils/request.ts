@@ -78,7 +78,7 @@ function checkCode<T>(data: IApiResponse<T>): IApiResponse<T> {
  * axios 请求封装
  */
 export const request: IApiClientReturn = {
-    async file<T>(url, data) {
+    async file<T>(url: string, data?: Objable) {
         const response = await axios({
             method: 'post',
             url,
@@ -90,7 +90,7 @@ export const request: IApiClientReturn = {
         const res = checkStatus(response)
         return checkCode(res as IApiResponse<T>)
     },
-    async post<T>(url, data) {
+    async post<T>(url: string, data?: Objable) {
         const response = await axios({
             method: 'post',
             url: apiConfig.api + url,
@@ -104,7 +104,7 @@ export const request: IApiClientReturn = {
         const res = checkStatus(response)
         return checkCode(res as IApiResponse<T>)
     },
-    async get<T>(url, params) {
+    async get<T>(url: string, params?: Objable) {
         const response = await axios({
             method: 'get',
             url: apiConfig.api + url,
