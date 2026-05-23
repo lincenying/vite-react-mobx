@@ -1,16 +1,22 @@
 import type { AxiosResponse } from 'axios'
+import type { IApiClientReturn, IApiResponse } from '~/types'
 import axios from 'axios'
 import NProgress from 'nprogress'
 import qs from 'qs'
+
+import { showMessage } from './message'
+
+export const apiConfig = {
+    api: import.meta.env.VITE_APP_API,
+    timeout: 30000,
+}
 
 axios.interceptors.request.use(
     (config) => {
         NProgress.start()
         return config
     },
-    (error) => {
-        return Promise.reject(error)
-    },
+    error => Promise.reject(error),
 )
 
 axios.interceptors.response.use(
@@ -19,7 +25,7 @@ axios.interceptors.response.use(
         const response = {} as AxiosResponse
         response.config = error.config
         response.data = null
-        response.headers = error.config.headers
+        response.headers = error.config?.headers
         response.status = error.code
         response.statusText = error.message
         response.request = error.request
@@ -27,20 +33,22 @@ axios.interceptors.response.use(
     },
 )
 
-function checkStatus(response: AxiosResponse) {
+function checkStatus(response: AxiosResponse): IApiResponse<unknown> {
     NProgress.done()
+
     if (response.status === 200 || response.status === 304) {
-        return response.data
+        return response.data as IApiResponse<unknown>
     }
+
     if (response.status === 401) {
         return {
             code: 401,
             info: response.statusText || response.toString(),
             data: response.statusText || response.toString(),
-            message: `您还没有登录, 或者登录超时!`,
-
+            message: '您还没有登录, 或者登录超时!',
         }
     }
+
     return {
         code: -404,
         info: response.statusText || response.toString(),
@@ -49,12 +57,15 @@ function checkStatus(response: AxiosResponse) {
     }
 }
 
-function checkCode(data: ResData<any>) {
+function checkCode<T>(data: IApiResponse<T>): IApiResponse<T> {
     if (data.code === -500) {
         window.location.href = '/backend'
     }
     else if (data.code === -400) {
         window.location.href = '/'
+    }
+    else if (data.code === 401) {
+        showMessage(data.message)
     }
     else if (data.code !== 200) {
         showMessage(data.message)
@@ -63,20 +74,11 @@ function checkCode(data: ResData<any>) {
     return data
 }
 
-type API = () => ApiClientReturn
-
 /**
- * axios Api 封装
- * @returns ApiClientReturn
- * @example
- * ```
- * get(url: '/api/url', params: {}, headers: {})
- * post(url: '/api/url', data: {}, headers: {})
- * file(url: '/api/url', data: {}, headers: {})
- * ```
+ * axios 请求封装
  */
-const _api: API = () => ({
-    async file(url, data) {
+export const request: IApiClientReturn = {
+    async file<T>(url, data) {
         const response = await axios({
             method: 'post',
             url,
@@ -86,9 +88,9 @@ const _api: API = () => ({
             },
         })
         const res = checkStatus(response)
-        return checkCode(res)
+        return checkCode(res as IApiResponse<T>)
     },
-    async post(url, data) {
+    async post<T>(url, data) {
         const response = await axios({
             method: 'post',
             url: apiConfig.api + url,
@@ -100,9 +102,9 @@ const _api: API = () => ({
             },
         })
         const res = checkStatus(response)
-        return checkCode(res)
+        return checkCode(res as IApiResponse<T>)
     },
-    async get(url, params) {
+    async get<T>(url, params) {
         const response = await axios({
             method: 'get',
             url: apiConfig.api + url,
@@ -113,8 +115,8 @@ const _api: API = () => ({
             },
         })
         const res = checkStatus(response)
-        return checkCode(res)
+        return checkCode(res as IApiResponse<T>)
     },
-})
+}
 
-export const $api = _api()
+export default request

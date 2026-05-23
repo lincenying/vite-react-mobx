@@ -1,26 +1,36 @@
-import type { ApiConfig, Article } from '~/types'
+import type { IApiConfig, IArticle } from '~/types'
+import { getArticleDetail } from '~/api/articleApi'
 import { makeAutoObservable, runInAction } from 'mobx'
 
 export class ArticleStore {
+    isLoad = false
+    pathname = ''
+    data: IArticle = {} as IArticle
+
     constructor() {
         makeAutoObservable(this)
     }
 
-    isLoad = false
-    pathname = ''
-    data: Article = {} as Article
-
-    async getArticle(config: ApiConfig) {
+    /**
+     * 获取文章详情
+     * @param config 请求参数
+     */
+    async getArticle(config: IApiConfig): Promise<void> {
         this.isLoad = false
-        const { code, data } = await $api.get<Article>(`api/ajax/article-detail`, config)
-        if (code === 200) {
-            // 在async/await函数中, 赋值需要在runInAction中
-            runInAction(() => {
-                this.isLoad = true
-                this.data = data
-                this.pathname = config.pathname || ''
-            })
+
+        try {
+            const { code, data } = await getArticleDetail(config)
+
+            if (code === 200) {
+                runInAction(() => {
+                    this.isLoad = true
+                    this.data = data
+                    this.pathname = config.pathname || ''
+                })
+            }
+        }
+        catch (error) {
+            console.error('获取文章详情失败:', error)
         }
     }
 }
-export default new ArticleStore()

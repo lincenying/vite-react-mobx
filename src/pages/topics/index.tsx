@@ -1,29 +1,24 @@
 import { Button, List, Spin } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { useAutoScroll } from '~/composables'
+import { Link, useLocation } from 'react-router-dom'
 
-const Main = observer(() => {
+import { useAutoScroll } from '~/hooks/useAutoScroll'
+
+const TopicsPage = observer(() => {
     const location = useLocation()
     const pathname = location.pathname
 
     const topics = useStore('topics')
 
-    const firstPathname = useRef(pathname)
     const [showMoreBtn, setShowMoreBtn] = useState(true)
 
     useMount(() => {
-        console.log('topics componentDidMount')
         if (topics.pathname !== location.pathname) {
             topics.getTopics({ page: 1, pathname })
         }
 
         document.title = 'M.M.M 小屋'
     })
-
-    useUpdateEffect(() => {
-        console.log('topics componentDidUpdate')
-        console.log(firstPathname.current, pathname)
-    }, [pathname])
 
     const handleLoadMore = async () => {
         setShowMoreBtn(false)
@@ -36,15 +31,18 @@ const Main = observer(() => {
     const { data } = topics
 
     return (
-        <div className="main">
+        <div className="main max-w-5xl mx-auto p-5 bg-white">
             <List
                 dataSource={data}
                 itemLayout="horizontal"
                 renderItem={item => (
                     <List.Item>
-                        <List.Item.Meta title={
-                            <Link className="li-name" to={`/article/${item.c_id}`}>{item.c_title}</Link>
-                        }
+                        <List.Item.Meta
+                            title={(
+                                <Link className="li-name" to={`/article/${item.c_id}`}>
+                                    {item.c_title}
+                                </Link>
+                            )}
                         />
                     </List.Item>
                 )}
@@ -52,11 +50,13 @@ const Main = observer(() => {
 
             <ul>
                 <li className="page">
-                    {showMoreBtn ? <Button onClick={handleLoadMore} type="primary">加载下一页</Button> : <Spin /> }
+                    {showMoreBtn
+                        ? <Button onClick={handleLoadMore} type="primary">加载下一页</Button>
+                        : <Spin />}
                 </li>
             </ul>
         </div>
     )
 })
 
-export default Main
+export default TopicsPage

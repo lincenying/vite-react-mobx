@@ -1,15 +1,18 @@
-import type { UserCookies } from '~/types'
+import type { IUserCookies } from '~/types'
 import { makeAutoObservable } from 'mobx'
 
 export class GlobalStore {
+    cookies: IUserCookies = {}
+
     constructor() {
         makeAutoObservable(this)
     }
 
-    cookies: UserCookies = {}
-
-    setCookies = async (config: UserCookies) => {
+    /**
+     * 设置用户 Cookie 信息
+     * @param config Cookie 配置
+     */
+    setCookies = async (config: IUserCookies): Promise<void> => {
         this.cookies = config
     }
 }
-export default new GlobalStore()

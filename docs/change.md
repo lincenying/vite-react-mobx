@@ -1,0 +1,26 @@
+# 改动记录
+
+## 2026-05-23
+
+### 改动内容
+
+- 按 global-07-react 规范重构项目目录结构
+- 新增 `src/types/` 目录，统一 `IApiResponse`、`IArticle` 等 I/T 前缀类型命名
+- 新增 `src/utils/request.ts`、`message.ts`、`format.ts`，移除 `composables/` 目录
+- 新增 `src/api/articleApi.ts` 模块 API 封装
+- 新增 `src/router/index.tsx`，迁移至 `createBrowserRouter` + `RouterProvider`
+- 新增 `src/layouts/BasicLayout.tsx`，接入 Nav、ScrollToTop、Outlet
+- 新增 `src/App.tsx`，精简 `main.tsx` 为纯挂载入口
+- 更新 MobX stores 使用新 API 与类型，移除单例 default 导出
+- 迁移 `useAutoScroll` 至 `src/hooks/useAutoScroll.ts`
+- 规范组件 Props 类型（`INavProps`、`IScrollToTopProps` 等）
+- 404 页面改用 Ant Design Result 组件
+- 移除 toastr 依赖，错误提示改用 Ant Design message
+- 更新 auto-import 配置，移除 react-redux 与 composables 引用
+- 新增 `.env.example`，修复 favicon 路径
+
+### Commit Message
+
+```
+refactor: 按 React 规范重构项目目录与 API/路由层
+```

@@ -1,22 +1,19 @@
-import { Card, Spin } from 'antd'
-
+import { Button, Card, Spin } from 'antd'
 import { observer } from 'mobx-react-lite'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-const PageArticle = observer(() => {
-    if (window.$timeout.list)
+const ArticlePage = observer(() => {
+    if (window.$timeout?.list) {
         clearTimeout(window.$timeout.list)
+    }
 
     const navigate = useNavigate()
-
     const location = useLocation()
-
     const pathname = location.pathname
     const params = useParams()
     const { id } = params
 
     const article = useStore('article')
-
-    const firstPathname = useRef(pathname)
 
     useEffect(() => {
         if (article.pathname !== location.pathname) {
@@ -24,37 +21,35 @@ const PageArticle = observer(() => {
         }
     }, [article, id, location.pathname, pathname])
 
-    useMount(() => {
-        console.log('article componentDidMount')
-    })
-
-    useUpdateEffect(() => {
-        console.log('article componentDidUpdate')
-        console.log(firstPathname.current, pathname)
-    }, [pathname])
-
     useUpdateEffect(() => {
         document.title = article.data.c_title
     }, [article.pathname])
 
+    const handleGoHome = () => {
+        navigate('/')
+    }
+
+    const handleGoBack = () => {
+        navigate(-1)
+    }
+
     const { data } = article
 
     return (
-        <div className="main">
+        <div className="main max-w-5xl mx-auto p-5 bg-white">
             <Spin
                 size="large"
                 spinning={article.pathname !== location.pathname}
             >
                 <Card
                     bordered={false}
-                    title={data.c_title}
                     extra={(
                         <div>
-                            <a onClick={() => navigate('/')}>首页</a>
-                            {' '}
-                            <a onClick={() => navigate(-1)}>后退</a>
+                            <Button onClick={handleGoHome} type="link">首页</Button>
+                            <Button onClick={handleGoBack} type="link">后退</Button>
                         </div>
                     )}
+                    title={data.c_title}
                 >
                     <div
                         className="article-content"
@@ -65,4 +60,5 @@ const PageArticle = observer(() => {
         </div>
     )
 })
-export default PageArticle
+
+export default ArticlePage

@@ -1,20 +1,19 @@
 import type { ReactNode } from 'react'
 import { observer } from 'mobx-react-lite'
 
-interface Props {
+export interface IScrollToTopProps {
     children?: ReactNode
 }
 
-export default observer((props: Props) => {
+const ScrollToTop = observer(({ children }: IScrollToTopProps) => {
     const location = useLocation()
     const pathname = location.pathname
-    const firstPathname = useRef(pathname)
 
     useUpdateEffect(() => {
-        console.log('componentDidUpdate')
-        console.log(firstPathname.current, pathname)
         window.scrollTo(0, 0)
-    }, [props])
+    }, [pathname])
 
-    return props.children
+    return children
 })
+
+export default ScrollToTop

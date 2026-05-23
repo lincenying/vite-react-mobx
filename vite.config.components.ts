@@ -19,14 +19,12 @@ export default (): PluginOption[] => ([
             'react',
             'react-router-dom',
             'ahooks',
-            {
-                'react-redux': ['useSelector', 'useDispatch'],
-            },
         ],
         dts: 'src/auto-imports.d.ts',
         dirs: [
             'src/stores/**',
-            'src/composables',
+            'src/hooks',
+            'src/utils',
         ],
 
         resolvers: [],
