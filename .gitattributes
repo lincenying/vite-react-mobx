@@ -1,17 +1,17 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-
-# Custom for Visual Studio
-*.cs     diff=csharp
-
-# Standard to msysgit
-*.doc	 diff=astextplain
-*.DOC	 diff=astextplain
-*.docx diff=astextplain
-*.DOCX diff=astextplain
-*.dot  diff=astextplain
-*.DOT  diff=astextplain
-*.pdf  diff=astextplain
-*.PDF	 diff=astextplain
-*.rtf	 diff=astextplain
-*.RTF	 diff=astextplain
+* text=auto     eol=lf
+# Files with Unix line endings
+*.vue   text    eol=lf
+*.py    text    eol=lf
+*.php   text    eol=lf
+*.js    text    eol=lf
+*.jsx   text    eol=lf
+*.ts    text    eol=lf
+*.tsx   text    eol=lf
+*.css   text    eol=lf
+*.less  text    eol=lf
+*.scss  text    eol=lf
+*.json  text    eol=lf
+*.sh    text    eol=lf
+*.yml   text    eol=lf
+*.yaml  text    eol=lf
+*.md    text    eol=lf
