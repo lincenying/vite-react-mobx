@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const config: { server: ServerOptions, build: BuildOptions } = {
     server: {
-        port: 3001,
+        port: 3004,
         host: '0.0.0.0',
         open: true,
         proxy: { // 代理配置
@@ -17,7 +17,10 @@ const config: { server: ServerOptions, build: BuildOptions } = {
             },
         },
         warmup: {
-            clientFiles: ['./src/main.tsx', './src/pages/**/*.tsx'],
+            clientFiles: [
+                './src/main.tsx',
+                './src/pages/**/*.tsx',
+            ],
         },
     },
     build: {
@@ -31,7 +34,7 @@ const config: { server: ServerOptions, build: BuildOptions } = {
             input: {
                 main: path.resolve(__dirname, 'index.html'),
             },
-            // external: /\.\/static.*/,
+            // external: /\.\/assets.*/,
             output: {
                 manualChunks(id: string) {
                     // 处理css分块

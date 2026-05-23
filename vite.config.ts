@@ -2,7 +2,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
-import reactRefresh from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react'
 import UnoCSS from 'unocss/vite'
 import { defineConfig, loadEnv } from 'vite'
 
@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
         css: Css,
 
         plugins: [
-            reactRefresh(),
+            react(),
             ...Components(),
             UnoCSS(),
         ],

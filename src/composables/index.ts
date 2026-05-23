@@ -1,6 +1,5 @@
 import type { Message } from '~/types'
 import ls from 'store2'
-
 import toastr from 'toastr'
 
 toastr.options.positionClass = 'toast-top-center'
@@ -93,5 +92,6 @@ export function useAutoScroll(key: string) {
         return () => {
             window.removeEventListener('scroll', handleScroll) // 组件卸载时移除事件监听
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 }

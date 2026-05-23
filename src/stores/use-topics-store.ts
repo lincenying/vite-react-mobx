@@ -1,52 +1,27 @@
-import type { PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from './use-store'
-
 import type { ApiConfig, Article, ArticleStoreList } from '~/types'
-import { createSlice } from '@reduxjs/toolkit'
-import { errConfig, setMessage } from './use-global-store'
+import { makeAutoObservable, runInAction } from 'mobx'
 
-const initialState: { lists: ArticleStoreList } = {
-    lists: {
-        data: [],
-        hasNext: 0,
-        page: 1,
-        pathname: '',
-    },
-}
-
-type ArticleList = ResDataLists<Article> & {
-    pathname?: string
-}
-
-const slice = createSlice({
-    name: 'topics',
-    initialState,
-    reducers: {
-        receiveTopics: (state, action: PayloadAction<ArticleList>) => {
-            const { list, page, hasNext, pathname } = action.payload
-            const lists = state.lists.data.concat(list)
-            state.lists = {
-                data: lists,
-                hasNext,
-                page,
-                pathname,
-            }
-        },
-    },
-})
-
-export const { receiveTopics } = slice.actions
-
-export async function getTopics(config: ApiConfig) {
-    config.limit = 20
-    const { code, data } = await $api.get<ResDataLists<Article>>('fetch/article/lists', config)
-    if (code === 200) {
-        return receiveTopics({ ...data, ...config })
+export class TopicsStore implements ArticleStoreList {
+    constructor() {
+        makeAutoObservable(this)
     }
 
-    return setMessage(errConfig)
+    hasNext = 0
+    page = 1
+    pathname = ''
+    data: Article[] = []
+
+    async getTopics(config: ApiConfig) {
+        config.limit = 20
+        const { code, data } = await $api.get<ResDataLists<Article>>('api/ajax/article-lists', config)
+        if (code === 200) {
+            // 在async/await函数中, 赋值需要在runInAction中
+            runInAction(() => {
+                this.data = this.data.concat(data.list)
+                this.page = config.page || 1
+                this.pathname = config.pathname || ''
+            })
+        }
+    }
 }
-
-export const topicsState = (state: RootState) => state.topics.lists
-
-export default slice.reducer
+export default new TopicsStore()

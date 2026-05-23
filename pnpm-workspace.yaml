@@ -28,12 +28,15 @@ trustPolicyExclude:
   - semver
   - chokidar
   - cached-factory
+  - undici-types
+  - synckit
 
 onlyBuiltDependencies:
   - better-sqlite3
   - vue-demi
 
 allowBuilds:
-  '@parcel/watcher': true
+  '@parcel/watcher': set this to true or false
+  core-js: true
   esbuild: true
   simple-git-hooks: set this to true or false

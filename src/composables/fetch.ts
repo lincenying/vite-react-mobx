@@ -2,7 +2,6 @@ import type { AxiosResponse } from 'axios'
 import axios from 'axios'
 import NProgress from 'nprogress'
 import qs from 'qs'
-import { apiConfig } from './config'
 
 axios.interceptors.request.use(
     (config) => {

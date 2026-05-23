@@ -17,7 +17,7 @@ export default (): PluginOption[] => ([
         ],
         imports: [
             'react',
-            'react-router',
+            'react-router-dom',
             'ahooks',
             {
                 'react-redux': ['useSelector', 'useDispatch'],
@@ -31,6 +31,7 @@ export default (): PluginOption[] => ([
 
         resolvers: [],
         defaultExportByFilename: false,
+        vueTemplate: false,
     }),
     vitePluginImportus([
         {

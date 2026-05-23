@@ -1,32 +1,41 @@
 import { Card, Spin } from 'antd'
 
-export default function Article() {
+import { observer } from 'mobx-react-lite'
+
+const PageArticle = observer(() => {
     if (window.$timeout.list)
         clearTimeout(window.$timeout.list)
 
+    const navigate = useNavigate()
+
     const location = useLocation()
-    const params = useParams()
 
     const pathname = location.pathname
-    const id = params.id
+    const params = useParams()
+    const { id } = params
 
-    const article = useSelector(articleState)
+    const article = useStore('article')
 
     const firstPathname = useRef(pathname)
-    const dispatch = useDispatch()
 
-    useMount(async () => {
-        console.log('componentDidMount')
-        if (article.pathname !== pathname) {
-            dispatch(await getArticleItem({ id, pathname }))
+    useEffect(() => {
+        if (article.pathname !== location.pathname) {
+            article.getArticle({ id, pathname })
         }
-        // window.scrollTo(0, 0)
+    }, [article, id, location.pathname, pathname])
+
+    useMount(() => {
+        console.log('article componentDidMount')
     })
 
     useUpdateEffect(() => {
-        console.log('componentDidUpdate')
+        console.log('article componentDidUpdate')
         console.log(firstPathname.current, pathname)
     }, [pathname])
+
+    useUpdateEffect(() => {
+        document.title = article.data.c_title
+    }, [article.pathname])
 
     const { data } = article
 
@@ -34,18 +43,26 @@ export default function Article() {
         <div className="main">
             <Spin
                 size="large"
-                spinning={article.pathname !== pathname}
+                spinning={article.pathname !== location.pathname}
             >
                 <Card
-                    variant="outlined"
-                    title={data?.c_title}
+                    bordered={false}
+                    title={data.c_title}
+                    extra={(
+                        <div>
+                            <a onClick={() => navigate('/')}>首页</a>
+                            {' '}
+                            <a onClick={() => navigate(-1)}>后退</a>
+                        </div>
+                    )}
                 >
                     <div
                         className="article-content"
-                        dangerouslySetInnerHTML={{ __html: data?.c_content || '' }}
+                        dangerouslySetInnerHTML={{ __html: data.c_content }}
                     />
                 </Card>
             </Spin>
         </div>
     )
-}
+})
+export default PageArticle

@@ -88,7 +88,7 @@ ol {
 /* 重置文本格式元素 */
 a {
     text-decoration: none;
-    -webkit-tap-highlight-color: rgb(255, 255, 255, 0);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 a:hover {
@@ -97,10 +97,9 @@ a:hover {
 
 abbr[title],
 acronym[title] {
-    cursor: help;
-
     /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
     border-bottom: 1px dotted;
+    cursor: help;
 }
 
 q::before,
@@ -139,14 +138,13 @@ hr {
     border: none;
 }
 
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
 body {
-    height: auto !important;
+    // overflow-anchor: none;
 
-    /* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+    height: auto !important;
     overflow: hidden scroll;
     background: #eee !important;
-
-    // overflow-anchor: none;
 }
 
 /* 其他常用样式 */
@@ -167,16 +165,16 @@ body {
 .disabled {
     pointer-events: none;
     cursor: not-allowed;
+    opacity: 0.65;
     filter: alpha(opacity=65);
     box-shadow: none;
-    opacity: 0.65;
 }
 
 .disabled-2,
 [disabled] {
+    opacity: 0.65;
     filter: alpha(opacity=65);
     box-shadow: none;
-    opacity: 0.65;
 }
 
 /* 动画 */
@@ -190,21 +188,21 @@ body {
 .example-enter.example-enter-active {
     z-index: 2;
     opacity: 1;
-    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
-    transition-duration: 500ms;
-    transition-property: transform, opacity;
     transform: translate(0, 0);
     transform: translate3d(0, 0, 0);
+    transition-property: transform, opacity;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
 
 .example-exit {
     min-height: 100vh;
     opacity: 0;
-    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
-    transition-duration: 0;
-    transition-property: transform, opacity;
     transform: translate(0, 0);
     transform: translate3d(0, 0, 0);
+    transition-property: transform, opacity;
+    transition-duration: 0;
+    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
 
 .example-exit.example-exit-active {
@@ -218,6 +216,7 @@ body {
 
 .main {
     width: 1024px;
+    min-height: calc(100vh - 40px);
     padding: 20px;
     margin: 0 auto;
     background: #fff;
@@ -268,10 +267,4 @@ body {
 
 pre {
     overflow: auto;
-}
-
-#root {
-    .ant-btn {
-        background-color: var(--ant-btn-bg-color);
-    }
 }

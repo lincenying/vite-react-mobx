@@ -1,74 +1,62 @@
-import { Button } from 'antd'
-import { Link } from 'react-router'
+import { Button, List, Spin } from 'antd'
+import { observer } from 'mobx-react-lite'
 import { useAutoScroll } from '~/composables'
 
-export default function Main() {
+const Main = observer(() => {
     const location = useLocation()
     const pathname = location.pathname
 
-    const topics = useSelector(topicsState)
-
-    const dispatch = useDispatch()
+    const topics = useStore('topics')
 
     const firstPathname = useRef(pathname)
-    const [loading, { setTrue: setLoadingTrue, setFalse: setLoadingFalse }] = useBoolean(false)
+    const [showMoreBtn, setShowMoreBtn] = useState(true)
 
-    useEffect(() => {
-        const handlefetchPosts = async (page = 1) => {
-            dispatch(await getTopics({ pathname, page }))
+    useMount(() => {
+        console.log('topics componentDidMount')
+        if (topics.pathname !== location.pathname) {
+            topics.getTopics({ page: 1, pathname })
         }
-        console.log(`useEffect:${topics.pathname} $$ ${pathname}`)
-        if (topics.pathname !== pathname) {
-            handlefetchPosts()
-        }
-    }, [dispatch, pathname, topics.pathname])
 
-    useAutoScroll('list')
-
-    // useMount(() => {
-    //     console.log('componentDidMount')
-    //     const scrollTop = ls.get(pathname) || 0
-    //     ls.remove(pathname)
-    //     if (scrollTop) {
-    //         window.scrollTo(0, scrollTop)
-    //     }
-    // })
+        document.title = 'M.M.M 小屋'
+    })
 
     useUpdateEffect(() => {
-        console.log('componentDidUpdate')
+        console.log('topics componentDidUpdate')
         console.log(firstPathname.current, pathname)
     }, [pathname])
 
     const handleLoadMore = async () => {
-        setLoadingTrue()
-        dispatch(await getTopics({ page: topics.page + 1, pathname }))
-        setLoadingFalse()
+        setShowMoreBtn(false)
+        await topics.getTopics({ page: topics.page + 1, pathname })
+        setShowMoreBtn(true)
     }
+
+    useAutoScroll('list')
 
     const { data } = topics
 
     return (
         <div className="main">
+            <List
+                dataSource={data}
+                itemLayout="horizontal"
+                renderItem={item => (
+                    <List.Item>
+                        <List.Item.Meta title={
+                            <Link className="li-name" to={`/article/${item.c_id}`}>{item.c_title}</Link>
+                        }
+                        />
+                    </List.Item>
+                )}
+            />
+
             <ul>
-                {
-                    data.map(item => (
-                        <li key={item.c_id}>
-                            <Link className="li-name" to={`/article/${item.c_id}`}>
-                                {item.c_title}
-                            </Link>
-                        </li>
-                    ))
-                }
                 <li className="page">
-                    <Button
-                        loading={loading}
-                        onClick={handleLoadMore}
-                        type="primary"
-                    >
-                        加载下一页
-                    </Button>
+                    {showMoreBtn ? <Button onClick={handleLoadMore} type="primary">加载下一页</Button> : <Spin /> }
                 </li>
             </ul>
         </div>
     )
-}
+})
+
+export default Main

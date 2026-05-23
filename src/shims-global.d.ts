@@ -64,17 +64,6 @@ declare interface ApiClientReturn {
     file: <T>(url: string, data?: Objable, headers?: Objable) => Promise<ResData<T>>
 }
 
-/**
- * Api Node端封装类型
- */
-declare interface ApiServerReturn {
-    post: <T>(url: string, data?: Objable, headers?: Objable) => Promise<ResData<T>>
-    get: <T>(url: string, params?: Objable, headers?: Objable) => Promise<ResData<T>>
-    cookies: UserCookies
-    api: AxiosInstance
-    getCookies: () => UserCookies
-}
-
 declare interface Window {
     $$api: ApiClientReturn
     $timeout: {

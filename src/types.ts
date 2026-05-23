@@ -1,3 +1,5 @@
+import type { AxiosInstance } from 'axios'
+
 /**
  * 请求参数合集
  * ```
@@ -20,7 +22,6 @@ export interface ApiConfig {
     id?: string | string[]
     limit?: number
     page?: number
-    path?: string
     pathname?: string
     key?: string | string[]
 }
@@ -88,8 +89,8 @@ export interface ArticleItemConfig {
 }
 
 export interface ListConfig {
-    hasNext?: number | boolean
-    hasPrev?: number | boolean
+    hasNext?: number
+    hasPrev?: number
     path?: string
     page: number
     [propName: string]: any
@@ -98,6 +99,7 @@ export interface ListConfig {
 export interface AdminStoreList extends ListConfig {
     data: User[]
 }
+
 export interface AdminStoreItem {
     data: Nullable<User>
     path?: string
@@ -116,6 +118,7 @@ export interface AdminStore {
 export interface ArticleStoreList extends ListConfig {
     data: Article[]
 }
+
 export interface ArticleStore {
     lists: ArticleStoreList
     item: {
@@ -194,4 +197,15 @@ export interface ShellStore {
     isPageSwitching: boolean
     pageTransitionName: string
     historyPageScrollTop: Record<string, number>
+}
+
+/**
+ * Api Node端封装类型
+ */
+export interface ApiServerReturn {
+    post: <T>(url: string, data?: Objable, headers?: Objable) => Promise<ResData<T>>
+    get: <T>(url: string, params?: Objable, headers?: Objable) => Promise<ResData<T>>
+    cookies: UserCookies
+    api: AxiosInstance
+    getCookies: () => UserCookies
 }
