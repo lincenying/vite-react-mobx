@@ -43,7 +43,7 @@ const ArticlePage = observer(() => {
                 spinning={article.pathname !== location.pathname}
             >
                 <Card
-                    bordered={false}
+                    variant="borderless"
                     extra={(
                         <div>
                             <Button onClick={handleGoHome} type="link">首页</Button>

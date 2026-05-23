@@ -39,6 +39,5 @@ export function useAutoScroll(key: string): void {
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 }

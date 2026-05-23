@@ -1,4 +1,4 @@
-import type { IListConfig } from './common'
+import { IListConfig } from "."
 
 /**
  * 文章详情
